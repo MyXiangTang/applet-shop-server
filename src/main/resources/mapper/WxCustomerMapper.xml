@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bishe.appletshopserver.mapper.WxCustomerMapper">
+    <!--查找微信用户-->
+    <select id="findAllWxCustomer" resultType="com.bishe.appletshopserver.entity.WxCustomer">
+        SELECT id,name,phone,openId,address,remark,creationdate,modifieddate
+        FROM wx_customer
+        where
+        1=1
+        <if test="name!=null and name!=''">
+            and name like '%${name}%'
+        </if>
+        <if test="phone!=null and phone!=''">
+            and phone like '%${phone}%'
+        </if>
+        <if test="openId!=null and openId!=''">
+            and openId like '%${openId}%'
+        </if>
+        <if test="address!=null and address!=''">
+            and address like '%${address}%'
+        </if>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--查找微信用户总条数-->
+    <select id="findAllWxCustomerCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM wx_customer
+        where
+        1=1
+        <if test="name!=null and name!=''">
+            and name like '%${name}%'
+        </if>
+        <if test="phone!=null and phone!=''">
+            and phone like '%${phone}%'
+        </if>
+        <if test="openId!=null and openId!=''">
+            and openId like '%${openId}%'
+        </if>
+        <if test="address!=null and address!=''">
+            and address like '%${address}%'
+        </if>
+    </select>
+
+    <!--增加微信用户-->
+    <insert id="saveWxCustomer">
+        insert into wx_customer(name,phone,openId,address,remark,creationdate,modifieddate)VALUES
+        (#{name},#{phone},#{openId},#{address},'',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
+    </insert>
+
+    <!--编辑微信用户-->
+    <update id="editWxCustomer">
+        update wx_customer set name=#{name},openId=#{openId},address=#{address},modifieddate=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+    <!--批量删除微信用户-->
+    <delete id="batchRemoveWxCustomer">
+        delete from wx_customer where id in
+        <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

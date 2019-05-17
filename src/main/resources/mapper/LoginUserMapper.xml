@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bishe.appletshopserver.mapper.LoginUserMapper">
+
+    <!--登陆验证-->
+    <select id="findLoginUser" resultType="com.bishe.appletshopserver.entity.LoginUser">
+        SELECT id,name,age,str_to_date(birth,'%Y%m%d') as birth,password,rank,phone,sex,email,remark,creationdate,modifieddate
+        FROM Login_User where name=#{userName}
+    </select>
+
+    <!--查找用户-->
+    <select id="findAllLoginUser" resultType="com.bishe.appletshopserver.entity.LoginUser">
+        SELECT id,name,age,str_to_date(birth,'%Y%m%d') as
+        birth,password,rank,phone,sex,email,remark,creationdate,modifieddate
+        FROM Login_User
+        where
+        1=1
+        <if test="name!=null and name!=''">
+            and name like '%${name}%'
+        </if>
+        <if test="phone!=null and phone!=''">
+            and phone like '%${phone}%'
+        </if>
+        <if test="age!=null and age!=''">
+            and age=#{age}
+        </if>
+        <if test="email!=null and email!=''">
+            and email like '%${email}%'
+        </if>
+        <if test="sex!=null and sex!=''">
+            and sex=#{sex}
+        </if>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--查找用户总条数-->
+    <select id="findAllLoginUserCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM Login_User
+        where
+        1=1
+        <if test="name!=null and name!=''">
+            and name like '%${name}%'
+        </if>
+        <if test="phone!=null and phone!=''">
+            and phone like '%${phone}%'
+        </if>
+        <if test="age!=null and age!=''">
+            and age=#{age}
+        </if>
+        <if test="email!=null and email!=''">
+            and email like '%${email}%'
+        </if>
+        <if test="sex!=null and sex!=''">
+            and sex=#{sex}
+        </if>
+    </select>
+
+    <!--增加用户-->
+    <insert id="saveLoginUser">
+        insert into Login_User(name,age,birth,password,rank,phone,sex,email,remark,creationdate,modifieddate)VALUES
+        (#{name},#{age},#{births},#{password},1,#{phone},#{sex},#{email},'',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
+    </insert>
+
+    <!--编辑用户-->
+    <update id="editLoginUser">
+        update Login_User set age=#{age},birth=#{births},password=#{password},phone=#{phone},sex=#{sex},email=#{email},modifieddate=CURRENT_TIMESTAMP
+        where name=#{name}
+    </update>
+
+    <!--批量删除登陆用户-->
+    <delete id="batchRemoveLoginUser">
+        delete from Login_User where id in
+        <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+            </foreach>
+    </delete>
+</mapper>

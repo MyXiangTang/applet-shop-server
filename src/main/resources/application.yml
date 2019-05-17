@@ -1,0 +1,18 @@
+server:
+  port: 8090
+
+logging:
+  config: classpath:logback.xml
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///applets_shop?serverTimezone=UTC&characterEncoding=utf8
+    username: root
+    password: root
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  config-location: classpath:/sqlMapConfig.xml
+  type-aliases-package: com.bishe.appletshopserver.entity

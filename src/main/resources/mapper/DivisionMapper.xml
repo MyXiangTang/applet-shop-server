@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bishe.appletshopserver.mapper.DivisionMapper">
+
+    <!--查找商品分类-->
+    <select id="findAllDivision" resultType="com.bishe.appletshopserver.entity.Division">
+        SELECT id,code,name,remark,creationdate,modifieddate
+        FROM Division
+        where
+        1=1
+        <if test="code!=null and code!=''">
+            and code like '%${code}%'
+        </if>
+        <if test="name!=null and name!=''">
+            and name like '%${name}%'
+        </if>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--查找商品分类总条数-->
+    <select id="findAllDivisionCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM Division
+        where
+        1=1
+        <if test="code!=null and code!=''">
+            and code like '%${code}%'
+        </if>
+        <if test="name!=null and name!=''">
+            and name like '%${name}%'
+        </if>
+    </select>
+
+    <!--增加商品分类-->
+    <insert id="saveDivision">
+        insert into Division(code,name,remark,creationdate,modifieddate)VALUES
+        (#{code},#{name},'',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
+    </insert>
+
+    <!--编辑商品分类-->
+    <update id="editDivision">
+        update Division set name=#{name},modifieddate=CURRENT_TIMESTAMP
+        where id=#{id}
+    </update>
+
+    <!--批量删除商品分类-->
+    <delete id="batchRemoveDivision">
+        delete from Division where id in
+        <foreach collection="list" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
