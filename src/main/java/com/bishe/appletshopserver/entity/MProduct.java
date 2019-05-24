@@ -7,8 +7,8 @@ public class MProduct {
   private String code;
   private String name;
   private String longName;
-  private long divisionId;
-  private double pricelist;
+  private String divisionId;
+  private String pricelist;
   private String imgUrl;
   private String remark;
   private java.sql.Timestamp creationdate;
@@ -68,20 +68,20 @@ public class MProduct {
   }
 
 
-  public long getDivisionId() {
+  public String getDivisionId() {
     return divisionId;
   }
 
-  public void setDivisionId(long divisionId) {
+  public void setDivisionId(String divisionId) {
     this.divisionId = divisionId;
   }
 
 
-  public double getPricelist() {
+  public String getPricelist() {
     return pricelist;
   }
 
-  public void setPricelist(double pricelist) {
+  public void setPricelist(String pricelist) {
     this.pricelist = pricelist;
   }
 

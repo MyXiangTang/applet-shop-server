@@ -36,7 +36,6 @@ public class MProductController {
     @PostMapping(value = "/listpage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ReTurnT<CommonResponse<MProduct>> searchMProduct(@RequestBody MProduct mProduct) {
         try {
-            LOGGER.info(mProduct.toString());
             List<MProduct> mProductList = mProductService.findAllMProduct(mProduct);
             int total = mProductService.findAllMProductCount(mProduct);
 

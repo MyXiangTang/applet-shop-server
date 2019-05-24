@@ -11,8 +11,16 @@ spring:
     url: jdbc:mysql:///applets_shop?serverTimezone=UTC&characterEncoding=utf8
     username: root
     password: root
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${shopApplet.static.filePath}
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   config-location: classpath:/sqlMapConfig.xml
   type-aliases-package: com.bishe.appletshopserver.entity
+
+shopApplet:
+  static:
+    filePath: /data/pic/
