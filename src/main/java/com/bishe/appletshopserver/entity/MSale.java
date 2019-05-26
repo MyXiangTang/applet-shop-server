@@ -1,20 +1,112 @@
 package com.bishe.appletshopserver.entity;
 
 
+import java.sql.Timestamp;
+import java.util.List;
+
 public class MSale {
 
   private long id;
   private String docno;
-  private long billdate;
-  private long wxCustomerId;
-  private long totQty;
-  private double totAmt;
+  private String billdate;
+  private String wxCustomerId;
+  private String totQty;
+  private String totAmt;
   private String status;
   private String remark;
   private java.sql.Timestamp creationdate;
   private java.sql.Timestamp modifieddate;
   private int page ;
   private int pageSize;
+  private List<MSaleitem> details;
+
+    public List<MSaleitem> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<MSaleitem> details) {
+        this.details = details;
+    }
+
+    public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public String getDocno() {
+    return docno;
+  }
+
+  public void setDocno(String docno) {
+    this.docno = docno;
+  }
+
+  public String getBilldate() {
+    return billdate;
+  }
+
+  public void setBilldate(String billdate) {
+    this.billdate = billdate;
+  }
+
+  public String getWxCustomerId() {
+    return wxCustomerId;
+  }
+
+  public void setWxCustomerId(String wxCustomerId) {
+    this.wxCustomerId = wxCustomerId;
+  }
+
+  public String getTotQty() {
+    return totQty;
+  }
+
+  public void setTotQty(String totQty) {
+    this.totQty = totQty;
+  }
+
+  public String getTotAmt() {
+    return totAmt;
+  }
+
+  public void setTotAmt(String totAmt) {
+    this.totAmt = totAmt;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  public String getRemark() {
+    return remark;
+  }
+
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
+
+  public Timestamp getCreationdate() {
+    return creationdate;
+  }
+
+  public void setCreationdate(Timestamp creationdate) {
+    this.creationdate = creationdate;
+  }
+
+  public Timestamp getModifieddate() {
+    return modifieddate;
+  }
+
+  public void setModifieddate(Timestamp modifieddate) {
+    this.modifieddate = modifieddate;
+  }
 
   public int getPage() {
     return page;
@@ -30,95 +122,6 @@ public class MSale {
 
   public void setPageSize(int pageSize) {
     this.pageSize = pageSize;
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-
-  public String getDocno() {
-    return docno;
-  }
-
-  public void setDocno(String docno) {
-    this.docno = docno;
-  }
-
-
-  public long getBilldate() {
-    return billdate;
-  }
-
-  public void setBilldate(long billdate) {
-    this.billdate = billdate;
-  }
-
-
-  public long getWxCustomerId() {
-    return wxCustomerId;
-  }
-
-  public void setWxCustomerId(long wxCustomerId) {
-    this.wxCustomerId = wxCustomerId;
-  }
-
-
-  public long getTotQty() {
-    return totQty;
-  }
-
-  public void setTotQty(long totQty) {
-    this.totQty = totQty;
-  }
-
-
-  public double getTotAmt() {
-    return totAmt;
-  }
-
-  public void setTotAmt(double totAmt) {
-    this.totAmt = totAmt;
-  }
-
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  public String getRemark() {
-    return remark;
-  }
-
-  public void setRemark(String remark) {
-    this.remark = remark;
-  }
-
-
-  public java.sql.Timestamp getCreationdate() {
-    return creationdate;
-  }
-
-  public void setCreationdate(java.sql.Timestamp creationdate) {
-    this.creationdate = creationdate;
-  }
-
-
-  public java.sql.Timestamp getModifieddate() {
-    return modifieddate;
-  }
-
-  public void setModifieddate(java.sql.Timestamp modifieddate) {
-    this.modifieddate = modifieddate;
   }
 
   @Override

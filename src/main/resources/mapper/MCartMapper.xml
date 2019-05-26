@@ -7,6 +7,18 @@
         FROM M_Cart a inner join wx_customer b on a.wx_customer_id=b.id inner join m_product c on a.m_product_id=c.id
         where
         1=1
+        <if test="wxCustomerId!=null and wxCustomerId!=''">
+        and wx_customer_id = '${wxCustomerId}%'
+    </if>
+        <if test="mProductId!=null and mProductId!=''">
+            and m_product_id = '${mProductId}%'
+        </if>
+        <if test="qty!=null and qty!=''">
+            and qty like '%${qty}%'
+        </if>
+        <if test="amt!=null and amt!=''">
+            and amt like '%${amt}%'
+        </if>
         limit #{page},#{pageSize}
     </select>
 

@@ -1,17 +1,18 @@
 package com.bishe.appletshopserver.entity;
 
 
+import java.sql.Timestamp;
+
 public class MSaleitem {
 
   private long id;
-  private long mSaleId;
-  private long mProductId;
-  private long qty;
-  private double amt;
+  private String mSaleId;
+  private String mProductId;
+  private String qty;
+  private String amt;
   private String remark;
   private java.sql.Timestamp creationdate;
   private java.sql.Timestamp modifieddate;
-
 
   public long getId() {
     return id;
@@ -21,42 +22,37 @@ public class MSaleitem {
     this.id = id;
   }
 
-
-  public long getMSaleId() {
+  public String getmSaleId() {
     return mSaleId;
   }
 
-  public void setMSaleId(long mSaleId) {
+  public void setmSaleId(String mSaleId) {
     this.mSaleId = mSaleId;
   }
 
-
-  public long getMProductId() {
+  public String getmProductId() {
     return mProductId;
   }
 
-  public void setMProductId(long mProductId) {
+  public void setmProductId(String mProductId) {
     this.mProductId = mProductId;
   }
 
-
-  public long getQty() {
+  public String getQty() {
     return qty;
   }
 
-  public void setQty(long qty) {
+  public void setQty(String qty) {
     this.qty = qty;
   }
 
-
-  public double getAmt() {
+  public String getAmt() {
     return amt;
   }
 
-  public void setAmt(double amt) {
+  public void setAmt(String amt) {
     this.amt = amt;
   }
-
 
   public String getRemark() {
     return remark;
@@ -66,22 +62,19 @@ public class MSaleitem {
     this.remark = remark;
   }
 
-
-  public java.sql.Timestamp getCreationdate() {
+  public Timestamp getCreationdate() {
     return creationdate;
   }
 
-  public void setCreationdate(java.sql.Timestamp creationdate) {
+  public void setCreationdate(Timestamp creationdate) {
     this.creationdate = creationdate;
   }
 
-
-  public java.sql.Timestamp getModifieddate() {
+  public Timestamp getModifieddate() {
     return modifieddate;
   }
 
-  public void setModifieddate(java.sql.Timestamp modifieddate) {
+  public void setModifieddate(Timestamp modifieddate) {
     this.modifieddate = modifieddate;
   }
-
 }

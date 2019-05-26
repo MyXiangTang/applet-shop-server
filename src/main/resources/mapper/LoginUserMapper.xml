@@ -4,14 +4,14 @@
 
     <!--登陆验证-->
     <select id="findLoginUser" resultType="com.bishe.appletshopserver.entity.LoginUser">
-        SELECT id,name,age,str_to_date(birth,'%Y%m%d') as birth,password,rank,phone,sex,email,remark,creationdate,modifieddate
+        SELECT id,name,age,str_to_date(birth,'%Y%m%d') as birth,password,`rank`,phone,sex,email,remark,creationdate,modifieddate
         FROM Login_User where name=#{userName}
     </select>
 
     <!--查找用户-->
     <select id="findAllLoginUser" resultType="com.bishe.appletshopserver.entity.LoginUser">
         SELECT id,name,age,str_to_date(birth,'%Y%m%d') as
-        birth,password,rank,phone,sex,email,remark,creationdate,modifieddate
+        birth,password,`rank`,phone,sex,email,remark,creationdate,modifieddate
         FROM Login_User
         where
         1=1
@@ -58,7 +58,7 @@
 
     <!--增加用户-->
     <insert id="saveLoginUser">
-        insert into Login_User(name,age,birth,password,rank,phone,sex,email,remark,creationdate,modifieddate)VALUES
+        insert into Login_User(name,age,birth,password,`rank`,phone,sex,email,remark,creationdate,modifieddate)VALUES
         (#{name},#{age},#{births},#{password},1,#{phone},#{sex},#{email},'',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
     </insert>
 

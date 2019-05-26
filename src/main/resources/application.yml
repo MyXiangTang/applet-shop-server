@@ -7,8 +7,8 @@ logging:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql:///applets_shop?serverTimezone=UTC&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///applets_shop?serverTimezone=UTC&characterEncoding=utf8&useSSL=false
     username: root
     password: root
   mvc:

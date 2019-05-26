@@ -1,13 +1,15 @@
 package com.bishe.appletshopserver.entity;
 
 
+import java.sql.Timestamp;
+
 public class MCart {
 
   private long id;
-  private long wxCustomerId;
-  private long mProductId;
-  private long qty;
-  private double amt;
+  private String wxCustomerId;
+  private String mProductId;
+  private String qty;
+  private String amt;
   private String remark;
   private java.sql.Timestamp creationdate;
   private java.sql.Timestamp modifieddate;
@@ -16,12 +18,68 @@ public class MCart {
   private String wxCustomerName;
   private String productName;
 
-  public long getmProductId() {
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public String getWxCustomerId() {
+    return wxCustomerId;
+  }
+
+  public void setWxCustomerId(String wxCustomerId) {
+    this.wxCustomerId = wxCustomerId;
+  }
+
+  public String getmProductId() {
     return mProductId;
   }
 
-  public void setmProductId(long mProductId) {
+  public void setmProductId(String mProductId) {
     this.mProductId = mProductId;
+  }
+
+  public String getQty() {
+    return qty;
+  }
+
+  public void setQty(String qty) {
+    this.qty = qty;
+  }
+
+  public String getAmt() {
+    return amt;
+  }
+
+  public void setAmt(String amt) {
+    this.amt = amt;
+  }
+
+  public String getRemark() {
+    return remark;
+  }
+
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
+
+  public Timestamp getCreationdate() {
+    return creationdate;
+  }
+
+  public void setCreationdate(Timestamp creationdate) {
+    this.creationdate = creationdate;
+  }
+
+  public Timestamp getModifieddate() {
+    return modifieddate;
+  }
+
+  public void setModifieddate(Timestamp modifieddate) {
+    this.modifieddate = modifieddate;
   }
 
   public int getPage() {
@@ -38,77 +96,6 @@ public class MCart {
 
   public void setPageSize(int pageSize) {
     this.pageSize = pageSize;
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-
-  public long getWxCustomerId() {
-    return wxCustomerId;
-  }
-
-  public void setWxCustomerId(long wxCustomerId) {
-    this.wxCustomerId = wxCustomerId;
-  }
-
-
-  public long getMProductId() {
-    return mProductId;
-  }
-
-  public void setMProductId(long mProductId) {
-    this.mProductId = mProductId;
-  }
-
-
-  public long getQty() {
-    return qty;
-  }
-
-  public void setQty(long qty) {
-    this.qty = qty;
-  }
-
-
-  public double getAmt() {
-    return amt;
-  }
-
-  public void setAmt(double amt) {
-    this.amt = amt;
-  }
-
-
-  public String getRemark() {
-    return remark;
-  }
-
-  public void setRemark(String remark) {
-    this.remark = remark;
-  }
-
-
-  public java.sql.Timestamp getCreationdate() {
-    return creationdate;
-  }
-
-  public void setCreationdate(java.sql.Timestamp creationdate) {
-    this.creationdate = creationdate;
-  }
-
-
-  public java.sql.Timestamp getModifieddate() {
-    return modifieddate;
-  }
-
-  public void setModifieddate(java.sql.Timestamp modifieddate) {
-    this.modifieddate = modifieddate;
   }
 
   public String getWxCustomerName() {
