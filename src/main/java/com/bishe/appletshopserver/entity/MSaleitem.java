@@ -8,11 +8,20 @@ public class MSaleitem {
   private long id;
   private String mSaleId;
   private String mProductId;
+  private String mProductName;
   private String qty;
   private String amt;
   private String remark;
   private java.sql.Timestamp creationdate;
   private java.sql.Timestamp modifieddate;
+
+  public String getmProductName() {
+    return mProductName;
+  }
+
+  public void setmProductName(String mProductName) {
+    this.mProductName = mProductName;
+  }
 
   public long getId() {
     return id;
@@ -76,5 +85,20 @@ public class MSaleitem {
 
   public void setModifieddate(Timestamp modifieddate) {
     this.modifieddate = modifieddate;
+  }
+
+  @Override
+  public String toString() {
+    return "MSaleitem{" +
+            "id=" + id +
+            ", mSaleId='" + mSaleId + '\'' +
+            ", mProductId='" + mProductId + '\'' +
+            ", mProductName='" + mProductName + '\'' +
+            ", qty='" + qty + '\'' +
+            ", amt='" + amt + '\'' +
+            ", remark='" + remark + '\'' +
+            ", creationdate=" + creationdate +
+            ", modifieddate=" + modifieddate +
+            '}';
   }
 }

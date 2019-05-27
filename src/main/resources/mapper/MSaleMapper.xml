@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bishe.appletshopserver.mapper.MSaleMapper">
+    <resultMap id="saleResult" type="com.bishe.appletshopserver.entity.MSale">
+        <id property="id" column="id"/>
+        <result property="wxCustomerId" column="wx_customer_id"/>
+        <result property="wxCustomerName" column="wx_customer_name"/>
+        <result property="billdate" column="billdate"/>
+        <result property="docno" column="docno"/>
+        <result property="remark" column="remark"/>
+        <result property="creationdate" column="creationdate"/>
+        <result property="modifieddate" column="modifieddate"/>
+        <result property="totQty" column="tot_qty"/>
+        <result property="totAmt" column="tot_amt"/>
+        <result property="status" column="status"/>
+        <result property="mProductId" column="m_product_id"/>
+        <collection property="details" ofType="com.bishe.appletshopserver.entity.MSaleitem">
+            <id property="id" column="i_id"/>
+            <result property="mProductId" column="i_m_product_id"/>
+            <result property="mProductName" column="i_m_product_name"/>
+            <result property="remark" column="i_remark"/>
+            <result property="creationdate" column="i_creationdate"/>
+            <result property="modifieddate" column="i_modifieddate"/>
+            <result property="qty" column="i_qty"/>
+            <result property="amt" column="i_amt"/>
+            <result property="mSaleId" column="m_sale_id"/>
+        </collection>
+    </resultMap>
     <!--查找购物车-->
-    <select id="findAllMSale" resultType="com.bishe.appletshopserver.entity.MSale">
-        SELECT a.id,a.wx_customer_id,a.m_product_id,a.qty,a.amt,a.remark,a.creationdate,a.modifieddate,b.name as wxCustomerName,c.name as productName
-        FROM M_Sale a inner join wx_customer b on a.wx_customer_id=b.id inner join m_product c on a.m_product_id=c.id
+    <select id="findAllMSale" resultMap="saleResult">
+        SELECT a.id,a.wx_customer_id,c.name as
+        wx_customer_name,a.billdate,a.docno,a.remark,a.creationdate,a.modifieddate,a.tot_qty,a.tot_amt,a.status,b.m_product_id,
+        b.id as i_id,b.m_product_id as i_m_product_id,d.name as i_m_product_name,b.remark as i_remark,b.modifieddate as
+        i_modifieddate,b.creationdate as i_creationdate,b.qty as i_qty,b.amt as i_amt,b.m_sale_id
+        from (select * from m_sale limit #{page},#{pageSize}) a
+        inner join m_saleitem b on a.id=b.m_sale_id
+        inner join wx_customer c ON a.wx_customer_id = c.id
+        inner join m_product d ON b.m_product_id = d.id
         where
         1=1
         <if test="wxCustomerId!=null and wxCustomerId!=''">
             and wx_customer_id = '${wxCustomerId}%'
         </if>
+        <if test="billdate!=null and billdate!=''">
+            and billdate = '${billdate}'
+        </if>
+        <if test="status!=null and status!=''">
+            and status = '${status}'
+        </if>
+        <if test="docno!=null and docno!=''">
+            and docno like '%${docno}%'
+        </if>
+        <if test="totQty!=null and totQty!=''">
+            and tot_qty like '%${totQty}%'
+        </if>
+        <if test="totAmt!=null and totAmt!=''">
+            and tot_amt like '%${totAmt}%'
+        </if>
         <if test="mProductId!=null and mProductId!=''">
-            and m_product_id = '${mProductId}%'
+            and m_product_id = '${mProductId}'
         </if>
-        <if test="qty!=null and qty!=''">
-            and qty like '%${qty}%'
-        </if>
-        <if test="amt!=null and amt!=''">
-            and amt like '%${amt}%'
-        </if>
-        limit #{page},#{pageSize}
     </select>
 
     <!--查找购物车总条数-->
