@@ -18,7 +18,10 @@
             and long_name like '%${longName}%'
         </if>
         <if test="divisionId!=null and divisionId!=''">
-            and division_id = '${divisionId}%'
+            and division_id = '${divisionId}'
+        </if>
+        <if test="id!=null and id!=''">
+            and id = '${id}'
         </if>
         limit #{page},#{pageSize}
     </select>
@@ -62,4 +65,15 @@
             #{id}
         </foreach>
     </delete>
+
+    <!--查找微信人气商品档案-->
+    <select id="getPopularProduct" resultType="com.bishe.appletshopserver.entity.MProduct">
+        SELECT id,code,name,long_name as longName,division_id as divisionId,pricelist,imgUrl,remark,creationdate,modifieddate,IFNULL(b.qty,0)
+        FROM M_Product a
+				left join (select m_product_id,sum(c.qty) as qty from m_saleitem c inner join M_Product d on c.m_product_id=d.id group by m_product_id) b
+				on a.id=b.m_product_id
+        where
+        1=1 order by IFNULL(b.qty,0) desc,creationdate desc
+				limit 0,10;
+    </select>
 </mapper>

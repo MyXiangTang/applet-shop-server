@@ -24,3 +24,8 @@ mybatis:
 shopApplet:
   static:
     filePath: /data/pic/
+
+wx:
+  auth:
+    appId:  wx4a19be394d9e23cd
+    secret: 89be6db8cfb480bee572dd274f14b525

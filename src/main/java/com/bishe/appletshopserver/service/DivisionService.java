@@ -1,6 +1,7 @@
 package com.bishe.appletshopserver.service;
 
 import com.bishe.appletshopserver.entity.Division;
+import com.bishe.appletshopserver.entity.WxDivisionProductList;
 import com.bishe.appletshopserver.mapper.DivisionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,5 +68,14 @@ public class DivisionService {
      */
     public boolean batchRemoveDivision(List<String> ids) {
         return divisionMapper.batchRemoveDivision(ids);
+    }
+
+    /**
+     * 获取微信所有商品分类信息
+     *
+     * @return
+     */
+    public List<WxDivisionProductList> getWxDivProductList() {
+        return divisionMapper.getWxDivProductList();
     }
 }

@@ -50,4 +50,28 @@
             #{id}
         </foreach>
     </delete>
+
+
+    <resultMap id="wxDivProductResult" type="com.bishe.appletshopserver.entity.WxDivisionProductList">
+        <id property="id" column="div_id"/>
+        <result property="code" column="div_code"/>
+        <result property="name" column="div_name"/>
+        <collection property="skus" ofType="com.bishe.appletshopserver.entity.MProduct">
+            <id property="id" column="id"/>
+            <result property="code" column="code"/>
+            <result property="name" column="name"/>
+            <result property="longName" column="long_name"/>
+            <result property="imgUrl" column="imgUrl"/>
+            <result property="pricelist" column="pricelist"/>
+            <result property="divisionId" column="division_id"/>
+        </collection>
+    </resultMap>
+
+    <!--查找微信商品分类-->
+    <select id="getWxDivProductList" resultMap="wxDivProductResult">
+        SELECT a.id as div_id,a.code as div_code,a.name as div_name,mp.id,mp.code,mp.name,mp.long_name,mp.imgUrl,mp.pricelist,mp.division_id
+        FROM Division a inner join m_product mp ON a.id = mp.division_id
+        where
+        1=1
+    </select>
 </mapper>

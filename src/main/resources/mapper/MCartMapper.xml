@@ -3,7 +3,8 @@
 <mapper namespace="com.bishe.appletshopserver.mapper.MCartMapper">
     <!--查找购物车-->
     <select id="findAllMCart" resultType="com.bishe.appletshopserver.entity.MCart">
-        SELECT a.id,a.wx_customer_id,a.m_product_id,a.qty,a.amt,a.remark,a.creationdate,a.modifieddate,b.name as wxCustomerName,c.name as productName
+        SELECT a.id,a.wx_customer_id as wxCustomerId,a.m_product_id as mProductId,a.qty,a.amt,a.remark,a.creationdate,a.modifieddate,b.name as wxCustomerName,c.name as productName,
+        c.long_Name as longName,c.pricelist,c.imgUrl
         FROM M_Cart a inner join wx_customer b on a.wx_customer_id=b.id inner join m_product c on a.m_product_id=c.id
         where
         1=1

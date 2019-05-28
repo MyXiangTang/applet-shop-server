@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,12 +58,25 @@ public class WxCustomerController {
      * @param wxCustomer
      * @return
      */
-    @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ReTurnT<String> saveWxCustomer(@RequestBody WxCustomer wxCustomer) {
+    @PostMapping(value = "/wxRegister", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ReTurnT<String> saveWxCustomer(@RequestBody WxCustomer wxCustomer, HttpServletRequest request) {
         try {
+            wxCustomer.setOpenId(request.getHeader("token"));
             LOGGER.info(wxCustomer.toString());
-            wxCustomerService.saveWxCustomer(wxCustomer);
-            return ReTurnT.SUCCESS;
+            WxCustomer unqionCustomer=new WxCustomer();
+            unqionCustomer.setOpenId(request.getHeader("token"));
+//            查看是否存在该顾客
+            List<WxCustomer> wxCustomerList = wxCustomerService.findAllWxCustomer(unqionCustomer);
+            if (CollectionUtils.isEmpty(wxCustomerList)) {
+//              第一次注册，则插入
+                wxCustomerService.saveWxCustomer(wxCustomer);
+            } else {
+//                修改保存
+                wxCustomerService.editWxCustomer(wxCustomer);
+            }
+//            返回用户ID
+            wxCustomerList = wxCustomerService.findAllWxCustomer(unqionCustomer);
+            return new ReTurnT(ReTurnT.SUCCESS_CODE, "SUCCESS", wxCustomerList.get(0).getId());
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return ReTurnT.FAIL;

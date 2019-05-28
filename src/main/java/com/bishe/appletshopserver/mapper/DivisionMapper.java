@@ -1,6 +1,7 @@
 package com.bishe.appletshopserver.mapper;
 
 import com.bishe.appletshopserver.entity.Division;
+import com.bishe.appletshopserver.entity.WxDivisionProductList;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -52,4 +53,11 @@ public interface DivisionMapper {
      * @return
      */
     boolean batchRemoveDivision(List<String> ids);
+
+    /**
+     * 查找微信所有商品分类
+     *
+     * @return
+     */
+    List<WxDivisionProductList> getWxDivProductList();
 }

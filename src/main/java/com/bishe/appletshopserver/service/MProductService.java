@@ -68,4 +68,13 @@ public class MProductService {
     public boolean batchRemoveMProduct(List<String> ids) {
         return mProductMapper.batchRemoveMProduct(ids);
     }
+
+    /**
+     * 查找微信人气商品档案
+     *
+     * @return
+     */
+    public List<MProduct> getPopularProduct() {
+        return mProductMapper.getPopularProduct();
+    }
 }

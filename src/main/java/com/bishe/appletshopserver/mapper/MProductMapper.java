@@ -52,4 +52,10 @@ public interface MProductMapper {
      * @return
      */
     boolean batchRemoveMProduct(List<String> ids);
+
+    /**
+     * 查找微信人气商品档案
+     * @return
+     */
+    List<MProduct> getPopularProduct();
 }

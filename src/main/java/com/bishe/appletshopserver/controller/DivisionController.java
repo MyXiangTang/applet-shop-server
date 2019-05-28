@@ -1,6 +1,7 @@
 package com.bishe.appletshopserver.controller;
 
 import com.bishe.appletshopserver.entity.Division;
+import com.bishe.appletshopserver.entity.WxDivisionProductList;
 import com.bishe.appletshopserver.model.response.CommonResponse;
 import com.bishe.appletshopserver.model.response.ReTurnT;
 import com.bishe.appletshopserver.service.DivisionService;
@@ -103,5 +104,20 @@ public class DivisionController {
             return ReTurnT.FAIL;
         }
     }
+
+
+    @PostMapping(value = "/wXlistpage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ReTurnT<CommonResponse<WxDivisionProductList>> getWxDivProductList(){
+        try {
+            List<WxDivisionProductList> wxDivisionProductLists = divisionService.getWxDivProductList();
+            CommonResponse commonResponse = new CommonResponse();
+            commonResponse.setContent(wxDivisionProductLists);
+            return new ReTurnT<>(commonResponse);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return ReTurnT.FAIL;
+        }
+    }
+
 
 }

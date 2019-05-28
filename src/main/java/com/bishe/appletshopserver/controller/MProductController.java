@@ -103,4 +103,21 @@ public class MProductController {
         }
     }
 
+    /**
+     * 查找微信人气商品档案
+     *
+     * @return
+     */
+    @PostMapping(value = "/popularListpage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ReTurnT<CommonResponse<MProduct>> getPopularProduct() {
+        try {
+            List<MProduct> mProductList = mProductService.getPopularProduct();
+            CommonResponse commonResponse = new CommonResponse();
+            commonResponse.setContent(mProductList);
+            return new ReTurnT<>(commonResponse);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return ReTurnT.FAIL;
+        }
+    }
 }

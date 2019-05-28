@@ -181,3 +181,7 @@ CREATE TABLE m_cart (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC COMMENT='购物车';
 
 
+alter table wx_customer modify name varchar(40) COLLATE utf8_bin DEFAULT NULL  COMMENT '名称';
+alter table wx_customer modify phone varchar(40) COLLATE utf8_bin DEFAULT NULL  COMMENT '电话(唯一标识)';
+alter table wx_customer rename column  nick to nickName;
+alter table wx_customer add userUrl varchar(400) COLLATE utf8_bin DEFAULT NULL  COMMENT '微信头像';

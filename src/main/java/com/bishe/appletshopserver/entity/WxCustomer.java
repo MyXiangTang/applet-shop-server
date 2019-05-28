@@ -3,16 +3,34 @@ package com.bishe.appletshopserver.entity;
 
 public class WxCustomer {
 
-  private long id;
+  private String id;
   private String name;
   private String phone;
   private String openId;
   private String address;
   private String remark;
+  private String userUrl;
+  private String nickName;
   private java.sql.Timestamp creationdate;
   private java.sql.Timestamp modifieddate;
-  private int page ;
-  private int pageSize;
+  private int page =0;
+  private int pageSize=100000;
+
+  public String getUserUrl() {
+    return userUrl;
+  }
+
+  public void setUserUrl(String userUrl) {
+    this.userUrl = userUrl;
+  }
+
+  public String getNickName() {
+    return nickName;
+  }
+
+  public void setNickName(String nickName) {
+    this.nickName = nickName;
+  }
 
   public int getPage() {
     return page;
@@ -30,11 +48,11 @@ public class WxCustomer {
     this.pageSize = pageSize;
   }
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -110,6 +128,8 @@ public class WxCustomer {
             ", openId='" + openId + '\'' +
             ", address='" + address + '\'' +
             ", remark='" + remark + '\'' +
+            ", userUrl='" + userUrl + '\'' +
+            ", nickName='" + nickName + '\'' +
             ", creationdate=" + creationdate +
             ", modifieddate=" + modifieddate +
             ", page=" + page +

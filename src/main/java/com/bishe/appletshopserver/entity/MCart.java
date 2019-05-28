@@ -17,6 +17,33 @@ public class MCart {
   private int pageSize;
   private String wxCustomerName;
   private String productName;
+  private String longName;
+  private String imgUrl;
+  private String pricelist;
+
+  public String getLongName() {
+    return longName;
+  }
+
+  public void setLongName(String longName) {
+    this.longName = longName;
+  }
+
+  public String getImgUrl() {
+    return imgUrl;
+  }
+
+  public void setImgUrl(String imgUrl) {
+    this.imgUrl = imgUrl;
+  }
+
+  public String getPricelist() {
+    return pricelist;
+  }
+
+  public void setPricelist(String pricelist) {
+    this.pricelist = pricelist;
+  }
 
   public long getId() {
     return id;
@@ -118,17 +145,20 @@ public class MCart {
   public String toString() {
     return "MCart{" +
             "id=" + id +
-            ", wxCustomerId=" + wxCustomerId +
-            ", mProductId=" + mProductId +
-            ", qty=" + qty +
-            ", amt=" + amt +
+            ", wxCustomerId='" + wxCustomerId + '\'' +
+            ", mProductId='" + mProductId + '\'' +
+            ", qty='" + qty + '\'' +
+            ", amt='" + amt + '\'' +
             ", remark='" + remark + '\'' +
             ", creationdate=" + creationdate +
             ", modifieddate=" + modifieddate +
             ", page=" + page +
             ", pageSize=" + pageSize +
             ", wxCustomerName='" + wxCustomerName + '\'' +
-            ", productNmae='" + productName + '\'' +
+            ", productName='" + productName + '\'' +
+            ", longName='" + longName + '\'' +
+            ", imgUrl='" + imgUrl + '\'' +
+            ", pricelist='" + pricelist + '\'' +
             '}';
   }
 }

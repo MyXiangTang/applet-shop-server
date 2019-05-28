@@ -19,6 +19,9 @@
         <if test="address!=null and address!=''">
             and address like '%${address}%'
         </if>
+        <if test="openId!=null and openId!=''">
+            and openId = '${openId}'
+        </if>
         limit #{page},#{pageSize}
     </select>
 
@@ -44,14 +47,14 @@
 
     <!--增加微信用户-->
     <insert id="saveWxCustomer">
-        insert into wx_customer(name,phone,openId,address,remark,creationdate,modifieddate)VALUES
-        (#{name},#{phone},#{openId},#{address},'',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
+        insert into wx_customer(name,phone,openId,address,remark,creationdate,modifieddate,nickName,userUrl)VALUES
+        (#{name},#{phone},#{openId},#{address},'',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,#{nickName},#{userUrl})
     </insert>
 
     <!--编辑微信用户-->
     <update id="editWxCustomer">
-        update wx_customer set name=#{name},openId=#{openId},address=#{address},modifieddate=CURRENT_TIMESTAMP
-        where id=#{id}
+        update wx_customer set name=#{name},openId=#{openId},address=#{address},modifieddate=CURRENT_TIMESTAMP,nickName=#{nickName},userUrl=#{userUrl}
+        where openId=#{openId}
     </update>
 
     <!--批量删除微信用户-->
